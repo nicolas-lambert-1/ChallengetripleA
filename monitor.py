@@ -57,27 +57,34 @@ def processes():
 def file_analysis():
  
  directory= Path("/home/mahira/Documents")
+  
+ numeration={}
  
  for item in directory.iterdir():
      if item.is_file():
-        print("Fichier :", item.name, "Taille :", item.stat().st_size, "octets")
+        extens=item.suffix
+        numeration[extens]=numeration.get(extens, 0) +1
+     
      elif item.is_dir():
         print("Dossier :", item.name)
+     
+ for extens, total in numeration.items():
+        print(f"Il y'a {total} fichiers {extens}")
  
  file_extension = {}
  
  for item in directory.iterdir():
      if item.is_file():
         ext=item.suffix[1:]
-        file_extension[ext]=file_extension.get(ext, 0)
-
+        if ext:
+           file_extension[ext]=file_extension.get(ext, 0) +1
+           
  total=sum(file_extension.values())
- if total==0:
-    print("Aucun fichier dans ce dossier")
- else:
-    for ext, count in file_extension.items():
-     percent=(count/total)*100
-     print(f"{ext}: {count} fichiers, {percent:.2f}% du total")
+
+ for ext, count in file_extension.items():
+        percent=(count/total)*100
+        print(f"{count} fichiers .{ext}, {percent:.2f}% du total")
+ print(f"Il y a {total} fichier au total")
     
 
 
