@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Triple A Challenge</title>
+  <link rel="icon" type="image/png" href="./public/favicon.png">
+  <link rel="stylesheet" href="template.css" />~
+</head>
+<body>
+
+<header>
+  <h1>Dashboard</h1>
+  <p>Dashboard généré à : {{ generated_timestamp }}</p>
+
+  <nav>
+    <ul>
+      <li><a href="#first">Système</a></li>
+      <li><a href="#second">CPU</a></li>
+      <li><a href="#third">Mémoire</a></li>
+      <li><a href="#fourth">Réseau</a></li>
+      <li><a href="#fifth">Processus</a></li>
+      <li><a href="#sixth">Fichier</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- SYSTÈME -->
+  <div class="introduce_system">
+  <section id="first" class="System">
+    <h2>Nom de la machine : {{ Nom_machine }}</h2>
+    <h3>Système d'exploitation : {{ Nom_exploitation }}</h3>
+
+    <div class="item">
+      <span class="time">{{ systeme_uptime }}</span>
+      <span class="user">{{ systeme_user_count }}</span>
+    </div>
+  </section>
+
+  <!-- CPU -->
+  <section id="second" class="CPU">
+    <h2>Nombre de cœurs :</h2>
+    <h3>Fréquence :</h3>
+
+    <div class="gauge-container">
+      <h3>Pourcentage d'utilisation</h3>
+      <div class="gauge-cpu"></div> <!-- GAUGE -->
+    </div>
+  </section>
+  </div>
+
+  <!-- MÉMOIRE -->
+  <section id="third" class="Memory">
+    <label for="Gb">RAM totale :</label>
+    <span class="range-mini">0 Gb</span>
+    <input
+      class="range-min"
+      id="Gb"
+      name="gigabytes"
+      type="range"
+      min="0"
+      max="256"
+    />
+    <span class="range-max">256 Gb</span>
+  </section>
+
+  <!-- RÉSEAU -->
+  <section id="fourth" class="Network">
+    <h2>Adresse IP principale</h2>
+    <p>{{ network_ip }}</p>
+  </section>
+
+  <!-- PROCESSUS -->
+  <section id="fifth" class="Processus">
+    <h2>Top 3 des processus</h2>
+    <article class="podium">Processus numéro 1 : {{ process_1 }}</article>
+    <article class="podium">Processus numéro 2 : {{ process_2 }}</article>
+    <article class="podium">Processus numéro 3 : {{ process_3 }}</article>
+  </section>
+
+  <!-- FICHIERS -->
+  <section id="sixth" class="Files">
+    <h2>Statistiques fichiers</h2>
+    <p>{{ files_stats }}</p>
+  </section>
+</main>
+
+<footer>
+  <span class="last">
+    La page a été générée automatiquement le : {{ generated_timestamp }}
+  </span>
+  <span class="last">
+    Rapport généré par : monitor.py
+  </span>
+</footer>
+
+</body>
+</html>
