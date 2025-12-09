@@ -127,32 +127,10 @@ section h3 {
 
 /* ====== Section CPU ====== */
 
-.CPU .gauge-container {
-  margin-top: 0.75rem;
-  padding: 0.75rem 0.85rem;
-  border-radius: 0.5rem;
-  background-color: #f9fafb;
-  border: 1px solid #e5e7eb;
-}
 
-.gauge-cpu {
-  position: relative;
-  margin-top: 0.5rem;
-  width: 100%;
-  max-width: 260px;
-  height: 0.7rem;
-  border-radius: 999px;
-  background: linear-gradient(to right, #10b981, #f59e0b, #ef4444);
-  overflow: hidden;
-}
 
-/* Petite barre “fond” pour simuler l’utilisation */
-.gauge-cpu::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: rgba(249, 250, 251, 0.6);
-}
+
+
 
 /* Section Mémoire  */
 .Memory{
