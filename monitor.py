@@ -1,7 +1,9 @@
 import psutil
 import datetime
-import time
-
+import time 
+import platform
+import socket
+import sys
 
 
 def cpu_infos():
@@ -21,15 +23,42 @@ def memory_infos():
  print("Pourcentage d'utilisation de la RAM: ", ram.active/(1024**3),"GB")
 
 def systems_infos():
- machine_name=psutil.users()
+ machine_name=socket.gethostname()
  print(f"Nom de la machine: {machine_name}")
- boot_hour=psutil.boot_time()
- print(f"Heure de démarrage du système: {boot_hour}")
+ machine_system=platform.system()
+ vers=sys
+ print(f"Système d'exploitation: {machine_system, vers.version_info}")
+ psutil.boot_time()
+ boot_time=datetime.datetime.fromtimestamp(psutil.boot_time()).strftime("%H:%M-%S")
+ print(f"Heure de démarrage du système: {boot_time}")
+ 
+ 
+ connected_users=psutil.users()
+ print(f"Nombres d'utilisateurs connectés: {connected_users}")
+ ip_adress=socket.gethostbyname(machine_name)
+ print(f"Adresse IP: {ip_adress}")
+
+def processes():
+ for proces in psutil.process_iter():
+  proces.cpu_percent()
+ for proces in psutil.process_iter(attrs=["name", "pid", "username", "cpu_percent"]):
+  print(proces.info)
+
+ for proces_ram in psutil.process_iter():
+    proces_ram.memory_percent()
+ for proces_ram in psutil.process_iter(attrs=["name", "pid", "username", "memory_percent"]):
+  print(proces_ram.info)
+
+
+
+
+
 
 while True:
     cpu_infos()
     memory_infos()
     systems_infos()
+    processes()
     time.sleep(3)
 
 
