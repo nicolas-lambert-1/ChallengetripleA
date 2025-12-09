@@ -11,7 +11,7 @@
 
 <header>
   <h1>Dashboard</h1>
-  <p>Dashboard généré à : 2025-12-09 17:12:48.905984</p>
+  <p>Dashboard généré à : 00:13:18</p>
 
   <nav>
     <ul>
@@ -33,15 +33,15 @@
     <h3>Système d'exploitation : Linux</h3>
 
     <div class="item">
-      <span class="time">04:29:24</span>
-      <span class="user">None</span>
+      <span class="time">04:16:29</span>
+      <span class="user">nico</span>
     </div>
   </section>
 
   <!-- CPU -->
   <section id="second" class="CPU">
-    <h2>Nombre de cœurs : 4</h2>
-    <h3>Fréquence :</h3>
+    <h2>Nombre de cœurs : 2</h2>
+    <h3>Fréquence : 3792.88 Hz</h3>
 
     <div class="gauge-container">
       <h3>Pourcentage d'utilisation</h3>
@@ -56,9 +56,8 @@
 
   <!-- MÉMOIRE -->
   <section id="third" class="Memory">
-    <label for="Gb">RAM totale : 7.21 Gb</label>
-    <label for="Gb">RAM utilisée : 5.30 Gb </label>
-    <label for="Gb">Pourcentage utilisé : 51.48 % </label>
+    <label for="Gb">RAM utilisée : 2.36 Go (45.09 %) </label>
+    <label for="Gb">RAM totale : 3.28 Go </label>
     <div class="progress">
       <div class="progress-bar" id="ram_bar"></div>
   </div>
@@ -72,31 +71,33 @@
 
   <!-- PROCESSUS -->
   <section id="fifth" class="Processus">
-    <h2>Top 3 des processus</h2>
-    <div class="top3">
-    <h3>par % CPU</h3>
-    <article class="podium">Processus numéro 1 : python3 (100.5% CPU)</article>
-    <article class="podium">Processus numéro 2 : code (89.7% CPU)</article>
-    <article class="podium">Processus numéro 3 : code (35.7% CPU)</article>
-    </div>
-    <div class="top3">
-    <h3>par % RAM</h3>
-    <article class="podium">Processus numéro 1 : code (12.1% RAM)</article>
-    <article class="podium">Processus numéro 2 : firefox (11.2% RAM)</article>
-    <article class="podium">Processus numéro 3 : Isolated Web Co (9.5% RAM)</article>
-    </div>
+    <h2 class="center">Top 3 des processus</h2>
+    <section class="Row">
+      <div class="top3">
+        <h3 class="center">par % CPU</h3>
+        <article class="podium">python3 (71.2% CPU)</article>
+        <article class="podium">code (38.4% CPU)</article>
+        <article class="podium">firefox (26.4% CPU)</article>
+      </div>
+      <div class="top3">
+        <h3 class="center">par % RAM</h3>
+        <article class="podium">code (12.4% RAM)</article>
+        <article class="podium">code (11.3% RAM)</article>
+        <article class="podium">firefox (10.7% RAM)</article>
+      </div>
+    </section>
   </section>
 
   <!-- FICHIERS -->
   <section id="sixth" class="Files">
     <h2>Statistiques fichiers</h2>
-    <p>{{ files_stats }}</p>
+    <p>2 fichiers .html, 28.57% du total<br>1 fichiers .css, 14.29% du total<br>2 fichiers .py, 28.57% du total<br>1 fichiers .js, 14.29% du total<br>1 fichiers .md, 14.29% du total<br>Il y a 7 fichier au total<br></p>
   </section>
 </main>
 
 <footer>
   <span class="last">
-    La page a été générée automatiquement le : 2025-12-09 17:12:48.905984
+    La page a été générée automatiquement le : 00:13:18
   </span>
   <span class="last">
     Rapport généré par : monitor.py

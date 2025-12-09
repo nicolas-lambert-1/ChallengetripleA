@@ -11,12 +11,14 @@ from pathlib import Path
 
 def cpu_infos():
  global core
+ global frequency
  core=psutil.cpu_count(())
  print(f"Nombre de coeurs: {core}")
  frequency=psutil.cpu_freq(())
- print("Fréquence du CPU: ", frequency.current)
+ print("Fréquence du CPU: ", frequency.max)
  cpu_usage= psutil.cpu_percent(interval=1)
  print(f"Pourcentage d'utilisation du CPU: {cpu_usage}%")
+
 
 def memory_infos():
  global ram
@@ -43,10 +45,9 @@ def systems_infos():
  global machine_name
  global machine_system
  global boot_time
- global connected_users
  global ip_adress
  global uptime_formatted
- global currenttime
+ global currenttimeformated
  machine_name=socket.gethostname()
  print(f"Nom de la machine: {machine_name}")
  machine_system=platform.system()
@@ -55,17 +56,29 @@ def systems_infos():
  psutil.boot_time()
  boot_time=psutil.boot_time() 
  uptime_seconds = time.time() - boot_time
- currenttime=datetime.now()
-
+ currenttimeformated=datetime.now().strftime("%H:%M:%S")
+ 
  hrs = int(uptime_seconds // 3600)
  mins = int((uptime_seconds % 3600) // 60)
  secs = int(uptime_seconds % 60)
  uptime_formatted = f"{hrs:02d}:{mins:02d}:{secs:02d}"
   
- connected_users=len(psutil.users())
+ connected_users=psutil.users()
  print(f"Nombres d'utilisateurs connectés: {connected_users}")
  ip_adress=socket.gethostbyname(machine_name)
  print(f"Adresse IP: {ip_adress}")
+
+
+def userslist():
+   with open("/etc/passwd") as f:
+      return [line.split(":")[0] for line in f
+              if int(line.split(":")[2]) >=1000 and line.split(":")[0] != "nobody"]
+   usernames_str = ", ".join(usernames)
+   return usernames_str
+
+   
+
+
 
 def processes():
    global proces
@@ -134,58 +147,54 @@ def processes_ram():
    print(process_ram_3)
 
 
-def get_connected_users():
-    output = os.popen("who").read().strip()
-    if output == "":
-        return 1 
-    return len(output.split("\n"))
-
-
-
 def file_analysis():
-    directory= Path("/home/nico/Documents")
+    directory = Path("/home/nico/Documents/B1/Challenge/TripleA")
+  
+    numeration = {}
+    file_extension = {}
+
     for item in directory.iterdir():
         if item.is_file():
-            print("Fichier :", item.name, "Taille :", item.stat().st_size, "octets")
+            extens = item.suffix
+            numeration[extens] = numeration.get(extens, 0) + 1
         elif item.is_dir():
             print("Dossier :", item.name)
     
-    file_extension = {
-    
-    "txt":0,
-    "jpg":0,
-    "py":0,
-    "pdf":0,
-    }
-   
-    
+    results = ""
 
-    for item in directory.iterdir():
-     if item.is_file():
-       ext=item.suffix[1:]
-       if ext in file_extension:
-        file_extension[ext]+=1
+
+    total = sum(numeration.values())
+    for ext, count in numeration.items():
+        percent = (count / total) * 100
+        results += f"{count} fichiers {ext}, {percent:.2f}% du total<br>"
+    results += f"Il y a {total} fichier au total<br>"
+    
+    return results
+
 
 
 while True:
     cpu_infos()
+    userslist()
     memory_infos()
     systems_infos()
     processes()
     processes_ram()
-    file_analysis()
-    users_number = print(get_connected_users())
+    file_analysis_results = file_analysis()
+    usernames_str=userslist()
+    username_list=", ".join(usernames_str)
     time.sleep(3)
     
     html = open("template.html").read()
     html = html.replace("{{ core }}", str(core))
+    html = html.replace("{{ core_frequency }}", str(frequency.current))
     html = html.replace("{{ ram_used }}", str(ram_usedformat))
     html = html.replace("{{ memory }}", str(ram_totalformat))
     html = html.replace("{{ ram_active }}", str(rampourcentformat))
     html = html.replace("{{ name_machine }}", (machine_name))
     html = html.replace("{{ name_os }}", (machine_system))
     html = html.replace("{{ systeme_uptime }}", str(uptime_formatted))
-    html = html.replace("{{ systeme_user_count }}", str(users_number))
+    html = html.replace("{{ systeme_user_count }}", str(username_list))
     html = html.replace("{{ network_ip }}", str(ip_adress))
     html = html.replace("{{ process_1 }}", str(process_1))
     html = html.replace("{{ process_2 }}", str(process_2))
@@ -193,7 +202,8 @@ while True:
     html = html.replace("{{ ram_1 }}", str(process_ram_1))
     html = html.replace("{{ ram_2 }}", str(process_ram_2))
     html = html.replace("{{ ram_3 }}", str(process_ram_3))
-    html = html.replace("{{ generated_timestamp }}", str(currenttime))
+    html = html.replace("{{ generated_timestamp }}", str(currenttimeformated))
+    html = html.replace("{{ files_stats }}", file_analysis_results)
     with open("index.html", "w") as fp:
        fp.write(html)
 

@@ -41,7 +41,7 @@
   <!-- CPU -->
   <section id="second" class="CPU">
     <h2>Nombre de cœurs : {{ core }}</h2>
-    <h3>Fréquence :</h3>
+    <h3>Fréquence : {{ core_frequency }} Hz</h3>
 
     <div class="gauge-container">
       <h3>Pourcentage d'utilisation</h3>
@@ -56,9 +56,8 @@
 
   <!-- MÉMOIRE -->
   <section id="third" class="Memory">
-    <label for="Gb">RAM totale : {{ memory }} Gb</label>
-    <label for="Gb">RAM utilisée : {{ ram_used }} Gb </label>
-    <label for="Gb">Pourcentage utilisé : {{ ram_active }} % </label>
+    <label for="Gb">RAM utilisée : {{ ram_used }} Go ({{ ram_active }} %) </label>
+    <label for="Gb">RAM totale : {{ memory }} Go </label>
     <div class="progress">
       <div class="progress-bar" id="ram_bar"></div>
   </div>
@@ -72,19 +71,21 @@
 
   <!-- PROCESSUS -->
   <section id="fifth" class="Processus">
-    <h2>Top 3 des processus</h2>
-    <div class="top3">
-    <h3>par % CPU</h3>
-    <article class="podium">Processus numéro 1 : {{ process_1 }}</article>
-    <article class="podium">Processus numéro 2 : {{ process_2 }}</article>
-    <article class="podium">Processus numéro 3 : {{ process_3 }}</article>
-    </div>
-    <div class="top3">
-    <h3>par % RAM</h3>
-    <article class="podium">Processus numéro 1 : {{ ram_1 }}</article>
-    <article class="podium">Processus numéro 2 : {{ ram_2 }}</article>
-    <article class="podium">Processus numéro 3 : {{ ram_3 }}</article>
-    </div>
+    <h2 class="center">Top 3 des processus</h2>
+    <section class="Row">
+      <div class="top3">
+        <h3 class="center">par % CPU</h3>
+        <article class="podium">{{ process_1 }}</article>
+        <article class="podium">{{ process_2 }}</article>
+        <article class="podium">{{ process_3 }}</article>
+      </div>
+      <div class="top3">
+        <h3 class="center">par % RAM</h3>
+        <article class="podium">{{ ram_1 }}</article>
+        <article class="podium">{{ ram_2 }}</article>
+        <article class="podium">{{ ram_3 }}</article>
+      </div>
+    </section>
   </section>
 
   <!-- FICHIERS -->
