@@ -4,6 +4,8 @@ import time
 import platform
 import socket
 import sys
+import os
+from pathlib import Path
 
 
 def cpu_infos():
@@ -20,7 +22,7 @@ def memory_infos():
  ram=psutil.virtual_memory()
  print("RAM utilisée en Gb: ", ram.used/(1024**3),"GB")
  print("RAM totale: ", ram.total/(1024**3),"GB")
- print("Pourcentage d'utilisation de la RAM: ", ram.active/(1024**3),"GB")
+ print("Pourcentage d'utilisation de la RAM: ", ram.active/ram.total*100, "%")
 
 def systems_infos():
  machine_name=socket.gethostname()
@@ -29,10 +31,13 @@ def systems_infos():
  vers=sys
  print(f"Système d'exploitation: {machine_system, vers.version_info}")
  psutil.boot_time()
- boot_time=datetime.datetime.fromtimestamp(psutil.boot_time()).strftime("%H:%M-%S")
- print(f"Heure de démarrage du système: {boot_time}")
+ boot_time=datetime.datetime.fromtimestamp(psutil.boot_time())
+ boot_time=datetime.datetime.fromtimestamp(psutil.boot_time())
+ print("Heure de démarrage du système: ", boot_time.strftime("%Hh%Mm-%Ss"))
+ up_time=datetime.datetime.now() - boot_time
+ print(f"Temps écoulé depuis démarrage: {up_time} h")
  
- 
+
  connected_users=psutil.users()
  print(f"Nombres d'utilisateurs connectés: {connected_users}")
  ip_adress=socket.gethostbyname(machine_name)
@@ -49,16 +54,47 @@ def processes():
  for proces_ram in psutil.process_iter(attrs=["name", "pid", "username", "memory_percent"]):
   print(proces_ram.info)
 
+def file_analysis():
+    directory= Path("/home/mahira/Documents")
+    for item in directory.iterdir():
+        if item.is_file():
+            print("Fichier :", item.name, "Taille :", item.stat().st_size, "octets")
+        elif item.is_dir():
+            print("Dossier :", item.name)
+    
+    file_extension = {
+    
+    "txt":0,
+    "jpg":0,
+    "py":0,
+    "pdf":0,
+    }
+   
+    
+
+    for item in directory.iterdir():
+     if item.is_file():
+       ext=item.suffix[1:]
+       if ext in file_extension:
+        file_extension[ext]+=1
+    
+    print(f"{txt} Fichiers .txt")
+    print(f"{jpg} Fichiers .jpg")
+    print(f"{py} Fichiers .py")
+    print(f"{pdf} Fichiers .pdf")
 
 
+    
 
 
-
+        
+            
 while True:
     cpu_infos()
     memory_infos()
     systems_infos()
     processes()
+    file_analysis()
     time.sleep(3)
 
 
