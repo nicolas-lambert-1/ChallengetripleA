@@ -55,33 +55,30 @@ def processes():
   print(proces_ram.info)
 
 def file_analysis():
-    directory= Path("/home/mahira/Documents")
-    for item in directory.iterdir():
-        if item.is_file():
-            print("Fichier :", item.name, "Taille :", item.stat().st_size, "octets")
-        elif item.is_dir():
-            print("Dossier :", item.name)
-    
-    file_extension = {
-    
-    "txt":0,
-    "jpg":0,
-    "py":0,
-    "pdf":0,
-    }
-   
-    
-
-    for item in directory.iterdir():
+ 
+ directory= Path("/home/mahira/Documents")
+ 
+ for item in directory.iterdir():
      if item.is_file():
-       ext=item.suffix[1:]
-       if ext in file_extension:
-        file_extension[ext]+=1
+        print("Fichier :", item.name, "Taille :", item.stat().st_size, "octets")
+     elif item.is_dir():
+        print("Dossier :", item.name)
+ 
+ file_extension = {}
+ 
+ for item in directory.iterdir():
+     if item.is_file():
+        ext=item.suffix[1:]
+        file_extension[ext]=file_extension.get(ext, 0)
+
+ total=sum(file_extension.values())
+ if total==0:
+    print("Aucun fichier dans ce dossier")
+ else:
+    for ext, count in file_extension.items():
+     percent=(count/total)*100
+     print(f"{ext}: {count} fichiers, {percent:.2f}% du total")
     
-    print(f"{txt} Fichiers .txt")
-    print(f"{jpg} Fichiers .jpg")
-    print(f"{py} Fichiers .py")
-    print(f"{pdf} Fichiers .pdf")
 
 
     
