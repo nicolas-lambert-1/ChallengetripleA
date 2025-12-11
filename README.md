@@ -141,6 +141,7 @@ dans un navigateur (Firefox, Chrome…).
 
 ![meta](https://github.com/nicolas-lambert-1/ChallengetripleA/blob/Image/Biblio_w3.png)
 ![dashboard](https://github.com/nicolas-lambert-1/ChallengetripleA/blob/Image/Dashboard.png)
+![maquette](https://github.com/nicolas-lambert-1/ChallengetripleA/blob/Image/Titre.png)
 
 
 
