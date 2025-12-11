@@ -139,8 +139,8 @@ dans un navigateur (Firefox, Chrome…).
 
 ## Screenshot
 
-![Dashboard](file:///C:/Users/mahir/Downloads/image.png)
-![meta]()
+![meta](https://github.com/nicolas-lambert-1/ChallengetripleA/blob/Image/Biblio_w3.png)
+![dashboard]()
 
 
 
