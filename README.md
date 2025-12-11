@@ -64,7 +64,7 @@ L’interface est rafraîchie automatiquement et permet de visualiser l’état 
 
 
 ## Commandes pour installer les dépendances
-![Dépendances](https://lh3.googleusercontent.com/chat_attachment/AP1Ws4sGB3xlw2VD-JyXjqhw1LYQ8aW0cMGlTKwmN-kEGuZimS9HaVijNAvQVSepfRh0Hp1a6n6UyNXyqDOliLbtKWc23wx1xOBHED_iE463swUSwEyYHKMM5Hkwb5yXoIGAQSIYippAEkrfN_nE79S49e8FoQRtiM8uYUsX23u_niA4BYOGZ0nExv14fD3SzNGMPK3MvMgZMU0B50lBXYLmEWNyF7vdWULoRPXQNCgm4CSK419g0oqJogxtGDNAVQ6mSuZPNoHPczRGhLCZ5_Dn9O1fBuIuCx8hTwiQwialTn8wC_xVRTsjgk2EtpvI3Aaxwjg=w2560-h1398-rw)
+![Dépendances](https://github.com/nicolas-lambert-1/ChallengetripleA/blob/Image/Modules.png)
 ## Utilisation
 
 📍 Comment lancer le script
