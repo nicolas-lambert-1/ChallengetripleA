@@ -42,29 +42,45 @@ L’interface est rafraîchie automatiquement et permet de visualiser l’état 
 
 ## Prérequis
 
-- Ubuntu 22.04 minimum  
-- Python 3.x  
+- Ubuntu
+- Python 3.x
 - Modules Python :
   - `psutil`
-  - `pandas`
-  - `pathlib`
-  - `socket`, `platform`, `sys`, etc. (inclus dans Python)
-- Un template HTML et CSS
-- Une VM
+  - `socket`, `platform`, `sys`, pathlib, . (inclus dans Python)
 
 ---
 
 
 ## Installation et Commandes
 
+***Méthode 1 : Le script (automatique)***
+-Téléchargez le ZIP via le bouton code Github.
+-Décompresser le fichier zip
+-Dans un terminal ouvert depuis la racine du dossier décompressé : 
 ```bash
-  git clone https://github.com/nicolas-lambert-1/ChallengetripleA
-  cd ChallengetripleA
+  ./Dashboard.sh
 ```
+‎ 
+
+***Méthode 2 : Le script (manuel)***
+-Téléchargez le ZIP via le bouton code Github.
+-Décompresser le fichier zip
+-Clic-droit sur le fichier "*Dashboard.sh*"
+-Propriétés -> Exécutable comme un programme -> Quitter les propriétés
+-Clic-droit sur le fichier "*Dashboard.sh*" -> Executer comme un programme
+‎ 
+‎ 
+
+***Méthode 3 : Les fichiers (manuel)***
+(Voir "Commandes pour installer les dépendances" et "Utilisation")
+
 
 
 ## Commandes pour installer les dépendances
-![Dépendances](https://github.com/nicolas-lambert-1/ChallengetripleA/blob/Image/Modules.png)
+```bash
+  pip3 install psutil
+```
+
 ## Utilisation
 
 📍 Comment lancer le script
@@ -110,7 +126,7 @@ dans un navigateur (Firefox, Chrome…).
 🧠 Mémoire
 
 - RAM totale
-- RAM utilisée en GB
+- RAM utilisée en Go
 - Pourcentage de RAM active
 
 🖥️ Système
@@ -126,7 +142,7 @@ dans un navigateur (Firefox, Chrome…).
 
 - Analyse du dossier choisi avec :
 
-   - `Comptage des fichiers .txt, .py, .pdf, .jpg`
+   - `Comptage des fichiers d'un dossier (toute extension confondue)`
    - `Total de fichiers rencontrés`
    - ` Pourcentage de chaque type de fichier`
 
@@ -140,19 +156,18 @@ dans un navigateur (Firefox, Chrome…).
 ## Screenshot
 
 ![meta](https://github.com/nicolas-lambert-1/ChallengetripleA/blob/Image/Biblio_w3.png)
-![dashboard](https://github.com/nicolas-lambert-1/ChallengetripleA/blob/Image/Dashboard.png)
+![dashboard](https://github.com/nicolas-lambert-1/ChallengetripleA/blob/Image/Screen%20Dashboard.png)
 ![maquette](https://github.com/nicolas-lambert-1/ChallengetripleA/blob/Image/Titre.png)
 
 
 
 ## Difficultés rencontrées
 
-- Nicolas à corrompu ma branche python
 - Difficultés de compatiblité avec MacOs 
 - Formater l'affichage str des variables
-- Triage(top 3) des processus 
+- Triage (top 3) des processus 
 - Gestion du templating HTML (remplacement automatique des valeurs)
-- Jauge Java
+  
 
 ## Améliorations possibles
 
