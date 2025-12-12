@@ -1,44 +1,43 @@
 window.onload = function() {
     var target = document.getElementById('foo');
-    target.width = 200;
-    target.height = 200;
+    target.width = target.clientWidth;
+    target.height = target.clientHeight;
 
     var opts = {
-        angle: 0,
-        lineWidth: 0.64,
-        radiusScale: 0.82,
-        pointer: { length: 0.65, strokeWidth: 0.026, color: '#000000' },
-        limitMax: false,
-        limitMin: true,
-        colorStart: '#6FADCF',
-        colorStop: '#8FC0DA',
-        strokeColor: '#E0E0E0',
-        generateGradient: true,
-        highDpiSupport: true,
-        staticLabels: {
-            font: "10px sans-serif",
-            labels: [0,50,100,150,200,250,300],
-            color: "#000",
-            fractionDigits: 0
-        }
-    };
+  lines: 12,
+  angle: 0,
+  lineWidth: 0.57,
+  radiusScale: 0.86,
+  pointer: {
+    length: 0.74,
+    strokeWidth: 0.029,
+    color: '#000000'
+  },
+  limitMax: 'false', 
+  percentColors: [[0.0, "#a9d70b" ], [0.50, "#f9c802"], [1.0, "#ff0000"]], 
+  strokeColor: '#E0E0E0',
+  generateGradient: true,
+  renderTicks: {
+    divisions: 10,
+    divWidth: 0.7,
+    divLength: 0.21,
+    divColor: '#333333',
+    subDivisions: 2,
+    subLength: 0.06,
+    subWidth: 0.6,
+    subColor: '#666666'
+  }
+};
 
     var gauge = new Gauge(target).setOptions(opts);
     var textField = document.getElementById("gauge-text");
     gauge.setTextField(textField);
 
-    var cpuValue = 120;
-    gauge.maxValue = 300;
+    var cpuValue = parseFloat(document.getElementById("cpu").dataset.value);
+    
+    gauge.maxValue = 100;
     gauge.setMinValue(0);
     gauge.animationSpeed = 64;
     gauge.set(cpuValue);
-
-    let used = parseInt(document.getElementById("ramUsed").textContent);
-    let total = parseInt(document.getElementById("ramTotal").textContent);
-
-    let percent = Math.round((used / total) * 100);
-
-    let bar = document.getElementById("ramBar");
-    bar.style.width = percent + "%";
-    bar.textContent = percent + "%";
 };
+

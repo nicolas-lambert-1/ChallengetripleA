@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="refresh" content="30">
   <title>Triple A Challenge</title>
-  <link rel="icon" type="image/png" href="./public/favicon.png">
   <link rel="stylesheet" href="template.css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
 </head>
 <body>
 
 <header>
-  <h1>Dashboard</h1>
-  <p>Dashboard généré à : </p>
+  <h1 id="dashboard-title">Dashboard</h1>
+  <p>Dashboard généré à : <span aria-live="change">01:58:35</span></p>
 
-  <nav>
+  <nav aria-label="Menu principal">
     <ul>
       <li><a href="#first">Système</a></li>
       <li><a href="#second">CPU</a></li>
@@ -28,71 +29,94 @@
 <main>
   <!-- SYSTÈME -->
   <div class="introduce_system">
-  <section id="first" class="System">
-    <h2>Nom de la machine : nico-VMware-Virtual-Platform</h2>
-    <h3>Système d'exploitation : Linux</h3>
+  <section id="first" class="System" aria-label="Informations système">
+    <h2 class="center">Informations système</h2>
+    <h2>Nom de la machine : <span aria-label="Nom de la machine" aria-live="change">nico-VMware-Virtual-Platform</span></h2>
+    <h3>Système d'exploitation : <span aria-label="Nom du système d'exploitation" aria-live="change">Linux #8-Ubuntu SMP</span></h3>
 
     <div class="item">
-      <span class="time">12:43-24</span>
-      <span class="user">[]</span>
+      <span class="time" aria-label="Temps de fonctionnement de la machine" aria-live="change"></span>
+        02:10:59
+      </span>
+      <span class="user" aria-label="Nombre d'utilisateurs connectés" aria-live="change">
+        nico
+      </span>
     </div>
   </section>
 
   <!-- CPU -->
-  <section id="second" class="CPU">
-    <h2>Nombre de cœurs : 4</h2>
-    <h3>Fréquence :</h3>
+  <section id="second" class="CPU" aria-label="Informations processeur">
+    <h2 class="center">CPU</h2>
 
-    <div class="gauge-container">
-      <h3>Pourcentage d'utilisation</h3>
+    <h2>Nombre de cœurs : <span aria-label="Nombre de cœurs" aria-live="change">2</span></h2>
+    <h3>Fréquence : <span aria-label="Fréquence du processeur" aria-live="change">3792.879</span> Hz</h3>
+    <div class="gauge-container" aria-label="Jauge d'utilisation CPU">
+
 <!----------------------------------------------GAUGE-->
-    <canvas id="foo" width="200" height="200"></canvas>
-    <div id="gauge-text"></div>
-
-</div>
+    <canvas id="foo" class="gauge-center"></canvas>
+    <h3>Pourcentage d'utilisation : <span id="cpu" data-value="17.6"><span id="gauge-text" aria-live="change"></span></span> % </h3>
     </div>
+  
   </section>
-  </div>
+</div>
+
 
   <!-- MÉMOIRE -->
-  <section id="third" class="Memory">
-    <label for="Gb">RAM totale : 7.21 Gb</label>
-    <label for="Gb">RAM utilisée : 4.97 Gb </label>
-    <label for="Gb">Pourcentage utilisé : 25.30 % </label>
-    <div class="progress">
-      <div class="progress-bar" id="ram_bar"></div>
+  <section id="third" class="Memory" aria-label="Informations mémoire RAM">
+    <h2 id="memory-title">Mémoire RAM</h2>
+    <label aria-label="RAM utilisée">
+      RAM utilisée : <span aria-live="change">2.38</span> Go
+    </label>
+    <label aria-label="RAM totale">
+      RAM totale : <span aria-live="change">3.28</span> Go
+    </label>
+    <div class="w3-light-grey w3-round-large">
+      <div class="w3-container w3-blue w3-round-large" style="width:36.66%"> 36.66 %</div>
+    </div>
+    
   </div>
   </section>
 
   <!-- RÉSEAU -->
-  <section id="fourth" class="Network">
+  <section id="fourth" class="Network" aria-label="Informations réseau">
     <h2>Adresse IP principale</h2>
-    <p>127.0.1.1</p>
+    <p aria-live="change">127.0.1.1</p>
   </section>
 
   <!-- PROCESSUS -->
-  <section id="fifth" class="Processus">
-    <h2>Top 3 des processus</h2>
-    <article class="podium">Processus numéro 1 : {{ process_1 }}</article>
-    <article class="podium">Processus numéro 2 : {{ process_2 }}</article>
-    <article class="podium">Processus numéro 3 : {{ process_3 }}</article>
+  <section id="fifth" class="Processus" aria-label="Top processus en cours">
+    <h2 class="center">Top 3 des processus</h2>
+    <section class="Row">
+      <div class="top3">
+        <h3 class="center">par % CPU</h3>
+        <article class="podium">python3 (83.6% CPU)</article>
+        <article class="podium">Isolated Web Co (21.7% CPU)</article>
+        <article class="podium">systemd (0.0% CPU)</article>
+      </div>
+      <div class="top3">
+        <h3 class="center">par % RAM</h3>
+        <article class="podium">firefox (13.3% RAM)</article>
+        <article class="podium">Isolated Web Co (10.7% RAM)</article>
+        <article class="podium">code (10.5% RAM)</article>
+      </div>
+    </section>
   </section>
 
   <!-- FICHIERS -->
   <section id="sixth" class="Files">
     <h2>Statistiques fichiers</h2>
-    <p>{{ files_stats }}</p>
+    <p>2 fichiers .html, 33.33% du total.</br>1 fichiers .css, 16.67% du total.</br>1 fichiers .sh, 16.67% du total.</br>1 fichiers .js, 16.67% du total.</br>1 fichiers .py, 16.67% du total.</br>Il y a 6 fichier au total.</p>
   </section>
 </main>
 
 <footer>
   <span class="last">
-    La page a été générée automatiquement le : 
-  </span>
+    La page a été générée automatiquement le : <span aria-live="change">01:58:35
   <span class="last">
     Rapport généré par : monitor.py
   </span>
 </footer>
+
 <script src="https://cdn.jsdelivr.net/npm/gaugeJS@1.3.9/dist/gauge.min.js"></script>
 <script src="java.js"></script>
 </body>
